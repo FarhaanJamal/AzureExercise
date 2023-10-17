@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Voter ID Card Information</title>
+    <style>
+        body{
+            background-image: url('decorative-background.jpg'); 
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-size: cover;
+            font-family: Arial, Helvetica, sans-serif;
+            line-height: 30px;
+        }
+        h1, h2{
+            text-align: center;
+        } 
+        div{
+            margin: auto;
+            width: 50%;
+            border: 3px solid #00589f;
+            padding: 10px;
+        }
+        #loadDataBtn{
+            background-color: rgb(255, 216, 20);
+            width: 100px;
+            height: 25px;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: background-color 0.5s;
+        }
+        #loadDataBtn:hover{
+            background-color: rgb(220, 187, 20);
+            box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.4);
+        }
+        #loadDataBtn:active{
+            opacity: 0.4;
+        }
+        #name{
+            vertical-align: middle;
+            margin-left: 10px;
+            border-radius: 5px;
+            padding-top: 3px;
+            padding-bottom: 3px;
+            border-width: 1px;
+        }
+    </style>
+</head>
+<body>
+    <h1>JSON</h1>
+    <div id="input" style="border: 3px solid #c00056;">
+        <label>Enter your name: </label>
+        <input id="name" type="text"><br/>
+        <button id="loadDataBtn">Load Data</button>
+    </div>
+    <h2 id="outheader"></h2>
+    <div style="display: flex; border: 3px solid #d29717;" id="maindiv">
+    </div>
+    <script>
+        document.getElementById("loadDataBtn").addEventListener("click", function() {
+            let uname = document.querySelector("#name");
+            let size = 2;
+            let data = [
+                {
+                    name: "John",
+                    voter_id: "8512",
+                    address: "Main Street",
+                    age: "25"
+                },{
+                    name: "Farhaan",
+                    voter_id: "7262",
+                    address: "Emerald Street",
+                    age: "20"
+                },{
+                    name: "Mohan",
+                    voter_id: "4521",
+                    address: "Gandhi Street",
+                    age: "32"
+                }, {
+                    name: "Doe",
+                    voter_id: "3454",
+                    address: "123 Street",
+                    age: "28"
+                }
+            ];
+            let voterInfo = "";
+            let flag = false;
+            for (let i=0; i<size; i++){
+                if (uname.value == data[i].name){
+                    voterInfo += `<p>${data[i].name}<br/>${data[i].voter_id}<br/>${data[i].address}<br/>${data[i].age}</p>`;
+                    flag = true;
+                }
+            }
+            document.getElementById("outheader").innerHTML = "Voter ID Card Information:";
+            if (flag){
+                document.getElementById("maindiv").innerHTML = "<div><p>Name: </br>Voter Id: </br>Address: </br>Age: </p></div><div>"+voterInfo+"</div>";
+            } else {
+                document.getElementById("maindiv").innerHTML = "<p>No record found</p>"
+            }
+        });
+    </script>
+</body>
+</html>
